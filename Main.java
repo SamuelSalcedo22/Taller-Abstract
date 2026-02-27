@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-// ===== Productos (familia) =====
+
 interface PaymentProcessor {
     String pay(String orderId, double amount);
 }
@@ -9,13 +9,13 @@ interface ReceiptGenerator {
     String receipt(String transactionId, double amount);
 }
 
-// ===== Abstract Factory =====
+
 interface PaymentGatewayFactory {
     PaymentProcessor createPaymentProcessor();
     ReceiptGenerator createReceiptGenerator();
 }
 
-// ===== Implementación Nequi =====
+
 class NequiFactory implements PaymentGatewayFactory {
     public PaymentProcessor createPaymentProcessor() {
         return new NequiPayment();
@@ -39,7 +39,7 @@ class NequiReceipt implements ReceiptGenerator {
     }
 }
 
-// ===== Implementación Bancolombia =====
+
 class BancolombiaFactory implements PaymentGatewayFactory {
     public PaymentProcessor createPaymentProcessor() {
         return new BancolombiaPayment();
@@ -63,7 +63,7 @@ class BancolombiaReceipt implements ReceiptGenerator {
     }
 }
 
-// ===== Cliente (usa la fábrica sin saber cuál proveedor es) =====
+
 class CheckoutService {
     private final PaymentProcessor payment;
     private final ReceiptGenerator receipt;
@@ -88,7 +88,6 @@ class CheckoutService {
     }
 }
 
-// ===== Main =====
 public class Main {
     public static void main(String[] args) {
 
